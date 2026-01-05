@@ -11,8 +11,8 @@ let cartTab = document.querySelector(".cart-tab");
 let closeBtn = document.querySelector(".close-btn");
 let carDList = document.querySelector(".card-list");
 let cartList = document.querySelector(".cart-list");
-let cartTotal=document.querySelector('.cart-total');
-let cartValue=document.querySelector('.cart-value');
+let cartTotal = document.querySelector(".cart-total");
+let cartValue = document.querySelector(".cart-value");
 
 cartIcon.addEventListener("click", () => {
   cartTab.classList.add("cart-tab-active");
@@ -24,19 +24,22 @@ closeBtn.addEventListener("click", () => {
 let productList = [];
 let cartProduct = [];
 
-const updateTotals=()=>{
-  let totalPrice=0;
-  let totalQuantity=0;
-  document.querySelectorAll('.item').forEach(item =>{
-
-    const quantity=parseInt(item.querySelector('.quantity-value').textContent);
-    const price=parseFloat(item.querySelector('.item-total').textContent.replace('$',''));
+const updateTotals = () => {
+  let totalPrice = 0;
+  let totalQuantity = 0;
+  document.querySelectorAll(".item").forEach((item) => {
+    const quantity = parseInt(
+      item.querySelector(".quantity-value").textContent
+    );
+    const price = parseFloat(
+      item.querySelector(".item-total").textContent.replace("₹", "")
+    );
     totalPrice += price;
     totalQuantity += quantity;
   });
-  cartTotal.textContent=`$${totalPrice.toFixed(2)}`;
-  cartValue.textContent=totalQuantity;
-}
+ cartTotal.textContent = `₹${totalPrice.toFixed(2)}`;
+  cartValue.textContent = totalQuantity;
+};
 
 const showCards = () => {
   productList.forEach((product) => {
@@ -68,7 +71,8 @@ const addToCart = (product) => {
   cartProduct.push(product);
 
   let quantity = 1;
-  let price = parseFloat(product.price.replace("$", ""));
+  let price = parseFloat(product.price.replace("₹", ""));
+
 
   const cartItem = document.createElement("div");
   cartItem.classList.add("item");
@@ -104,16 +108,15 @@ const addToCart = (product) => {
     if (quantity > 1) {
       quantity--;
       quantityValue.textContent = quantity;
-      itemTotal.textContent = `$${(price * quantity).toFixed(2)}`;
+      itemTotal.textContent = `₹${(price * quantity).toFixed(2)}`;
       updateTotals();
-    }
-    else{
-      cartItem.classList.add('slide-out');
-     setTimeout(()=>{
-       cartItem.remove();
-      cartProduct=cartProduct.filter(item=>item.id !== product.id);
-      updateTotals();
-     },300)
+    } else {
+      cartItem.classList.add("slide-out");
+      setTimeout(() => {
+        cartItem.remove();
+        cartProduct = cartProduct.filter((item) => item.id !== product.id);
+        updateTotals();
+      }, 300);
     }
   });
 
@@ -121,7 +124,7 @@ const addToCart = (product) => {
     e.preventDefault();
     quantity++;
     quantityValue.textContent = quantity;
-    itemTotal.textContent = `$${(price * quantity).toFixed(2)}`;
+    itemTotal.textContent = `₹${(price * quantity).toFixed(2)}`;
     updateTotals();
   });
 };
