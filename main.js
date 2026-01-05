@@ -13,6 +13,9 @@ let carDList = document.querySelector(".card-list");
 let cartList = document.querySelector(".cart-list");
 let cartTotal = document.querySelector(".cart-total");
 let cartValue = document.querySelector(".cart-value");
+let hamBurger=document.querySelector('.hamburger');
+let mobileMenu=document.querySelector('.mobile-menu');
+const bars=document.querySelector('.fa-bars');
 
 cartIcon.addEventListener("click", () => {
   cartTab.classList.add("cart-tab-active");
@@ -20,6 +23,18 @@ cartIcon.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
   cartTab.classList.remove("cart-tab-active");
 });
+
+hamBurger.addEventListener('click',()=>{
+  mobileMenu.classList.toggle('mobile-menu-active');
+});
+hamBurger.addEventListener('click', () => {
+  bars.classList.toggle('fa-bars'); // remove bars if present
+  bars.classList.toggle('fa-xmark'); // add xmark if absent
+});
+
+// hamBurger.addEventListener('click',()=>{
+//   bars.classList.toggle('fa-xmark');
+// });
 
 let productList = [];
 let cartProduct = [];
