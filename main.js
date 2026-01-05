@@ -32,9 +32,7 @@ hamBurger.addEventListener('click', () => {
   bars.classList.toggle('fa-xmark'); // add xmark if absent
 });
 
-// hamBurger.addEventListener('click',()=>{
-//   bars.classList.toggle('fa-xmark');
-// });
+
 
 let productList = [];
 let cartProduct = [];
